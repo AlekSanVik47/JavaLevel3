@@ -1,59 +1,63 @@
 package threadLesson;
 
-public class Multithreading {
+public class Multithreading  {
 
-    private final Object monitor = new Object();
+    private  Object monitor = new Object();
     private volatile char currentChar = 'A';
 
-    public void printA() {
-        synchronized (monitor) {
-            try {
-                for (int i = 0; i <= 4; i++) {
-
-                    while (currentChar != 'A') {
-                        monitor.wait();
+    public synchronized void printA() {
+        //synchronized (monitor) {
+            // try {
+            for (int i = 0; i <= 4; i++) {
+        //        synchronized (monitor) {
+                while (currentChar != 'A') {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
                     }
-                    System.out.print("A");
-                    currentChar = 'B';
-                    monitor.notify();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.print("A");
+                currentChar = 'B';
+                notifyAll();
             }
-        }
+        //}
+        //}
     }
 
-    public void printB() {
-        synchronized (monitor) {
-            try {
+    public synchronized void printB() {
+       //     synchronized (monitor) {
                 for (int i = 0; i <= 4; i++) {
-                    while (currentChar != 'B') {
-                        monitor.wait();
+        //            synchronized (monitor) {
+                        while (currentChar != 'B') {
+                            try {
+                                wait();
+                            } catch (InterruptedException e) {
+                            }
+                        }
+                        System.out.print("B");
+                        currentChar = 'C';
+                        notifyAll();
                     }
-                    System.out.print("B");
-                    currentChar = 'C';
-                    monitor.notify();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    //            }
+        //}
     }
-    public void printC() {
-        synchronized (monitor) {
-            try {
+
+    public synchronized void printC() {
+      //  synchronized (monitor) {
                 for (int i = 0; i <= 4; i++) {
-                    while (currentChar != 'C') {
-                        monitor.wait();
+//                    synchronized (monitor) {
+                        while (currentChar != 'C') {
+                            try {
+                                wait();
+                            } catch (InterruptedException e) {
+                            }
+                        }
+                        System.out.print("C");
+                        currentChar = 'A';
+                        notifyAll();
                     }
-                    System.out.print("C");
-                    currentChar = 'A';
-                    monitor.notify();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+          //      }
+        //}
     }
 
     public static void main(String[] args) {
@@ -61,10 +65,14 @@ public class Multithreading {
         Thread threadA = new Thread(waitNotify::printA);
         Thread threadB = new Thread(waitNotify::printB);
         Thread threadC = new Thread(waitNotify::printC);
-        threadA.start();
-        threadB.start();
-        threadC.start();
+        //for (int i = 0; i <= 4; i++) {
+            threadA.start();
+            threadB.start();
+            threadC.start();
+        //}
 
 
     }
+
+
 }
