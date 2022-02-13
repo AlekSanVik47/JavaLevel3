@@ -1,4 +1,4 @@
-package threadLesson;
+package threadLesson.task_1;
 
 public class Multithreading  {
 
