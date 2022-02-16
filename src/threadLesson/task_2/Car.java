@@ -2,9 +2,6 @@ package threadLesson.task_2;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Car implements Runnable {
 	private static int CARS_COUNT;

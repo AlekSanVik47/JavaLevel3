@@ -1,19 +1,9 @@
 package threadLesson.task_2;
 
-import java.util.concurrent.Semaphore;
-
 public class Road extends Stage {
 	public Road(int length) {
 		this.length = length;
 		this.description = "Дорога " + length + " метров";
-	}
-
-	@Override
-	public String toString() {
-		return "Road{" +
-				"length=" + length +
-				", description='" + description + '\'' +
-				'}';
 	}
 
 	@Override

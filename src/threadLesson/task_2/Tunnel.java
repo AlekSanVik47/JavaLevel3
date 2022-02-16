@@ -31,12 +31,4 @@ public class Tunnel extends Stage {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return "Tunnel{" +
-				"length=" + length +
-				", description='" + description + '\'' +
-				'}';
-	}
-
 }

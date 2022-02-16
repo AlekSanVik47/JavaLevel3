@@ -17,7 +17,6 @@ public class Race {
 	}
 
 	public AtomicBoolean isWinnerExist() {
-
 		return isWinnerExist;
 	}
 
