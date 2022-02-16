@@ -9,6 +9,14 @@ public class Road extends Stage {
 	}
 
 	@Override
+	public String toString() {
+		return "Road{" +
+				"length=" + length +
+				", description='" + description + '\'' +
+				'}';
+	}
+
+	@Override
 	public void go(Car c) {
 		try {
 			System.out.println(c.getName() + " начал этап: " + description);
