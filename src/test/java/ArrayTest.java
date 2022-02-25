@@ -1,40 +1,60 @@
 import com.tests.ArrayAfterFour;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
+import java.util.Collection;
+
+import static org.junit.Assert.assertThrows;
+
 
 public class ArrayTest {
-	ArrayAfterFour array;
+	ArrayAfterFour afterFour;
+	private int[] arr;
+	private boolean flag;
+
+//	public ArrayTest(int[] arr, boolean flag) {
+//		this.arr = arr;
+//		this.flag = flag;
+//	}
+
+
+	@Parameterized.Parameters
+	public static Collection<Object[]> testData() {
+		return Arrays.asList(new Object[][]{
+				{5, 7, 8, 9, 4, 1},
+				{1, 2, 4, 4, 2, 3, 4, 1, 7},
+				{1, 2, 1, 1, 2, 3, 5, 1, 7},
+				{4, 4, 4, 4},
+				{}
+		});
+	}
 
 	@Before
-	public int[] init() {
-		array = new ArrayAfterFour();
-		int sizeArr = (int) (Math.random() * 10);
-		int[] arr = new int[sizeArr];
-		for (int i = 0; i < sizeArr; i++) {
-			arr[i] = (int) (Math.random() * 10);
-		}
-		System.out.println(Arrays.toString(arr));
-		return arr;
+	public void init() {
+		afterFour = new ArrayAfterFour();
 	}
 
 
 	@Test
-	public void getArrayAfterFourTest(int[] arr) {
-		arr = new int[]{1, 5, 6, 0, 4, 11, 2, 3, 7};
-		for (int e:
-		     arr) {
-			Assertions.assertTrue(e == 4, String.valueOf(ArrayAfterFour.getArrayAfterFour(arr)));
-		}
-
+	public void getArrayAfterFourTest() {
+		Assert.assertArrayEquals(new int[]{11, 2, 3, 7}, afterFour.getArrayAfterFour(new int[]{1, 5, 6, 0, 4, 11, 2, 3, 7}));
 	}
 
-	public static void main(String[] args) {
-		ArrayTest arrayTest = new ArrayTest();
-		arrayTest.getArrayAfterFourTest(arrayTest.init());
+	@Test
+	 void getArrayAfterFourTestException() {
+ /*Exception exception = assertThrows(RuntimeException.class, () ->
+		 afterFour.getArrayAfterFour(new int[]{1, 5, 6, 0, 7, 11, 2, 3, 7}));
+		Assertions.assertEquals(" ",exception.getMessage());*/
+		ArrayAfterFour.getArrayAfterFour(new int[]{1, 5, 6, 0, 7, 11, 2, 3, 7});
+		Assertions.assertEquals(RuntimeException.class, RuntimeException.class);
 	}
+
+
 }
 
 
