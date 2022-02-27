@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class ArrayAfterFour {
 	private static final Logger logger = LogManager.getLogger(ArrayAfterFour.class.getName());
 
-	public static int[] getArrayAfterFour(int... arg) {
+	public static int[] getArrayAfterFour(int[] arg) {
 
 		try {
 			int lastIndex = -1;
@@ -20,20 +20,21 @@ public class ArrayAfterFour {
 					return Arrays.copyOfRange(arg, lastIndex, arg.length);
 				}
 			}
-			throw new RuntimeException();
+
+			throw new RuntimeException(" в массиве значение не соответствует заданным условиям");
+
 		} catch (RuntimeException e) {
-			logger.info(" в массиве нет значения 4");
-			logger.info(e.getMessage(), e);
+//			logger.info(e.getMessage(), e);
 			e.printStackTrace();
 		}
-		return arg;
+		return null;
 	}
 
 	public static void main(String[] args) {
 		int[] arr = {1, 5, 6, 0, 4, 11, 2, 3, 7};
 		int[] arr1 = {1, 5, 6, 0, 7, 11, 2, 3, 7};
 		int[] arr2 = {1, 5, 6, 0, 4, 11, 4, 3, 7};
-		System.out.println(java.util.Arrays.toString(getArrayAfterFour(arr2)));
+		System.out.println(java.util.Arrays.toString(getArrayAfterFour(arr1)));
 
 	}
 }
